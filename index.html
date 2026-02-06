@@ -1,79 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ricca Neuda | Digital Marketing & CRM Portfolio</title>
-    <meta name="description" content="Ricca Neuda – Digital Marketing Virtual Assistant specializing in content planning, CRM management, email marketing, and lead generation.">
-    <style>
-        :root {
-            --primary: #8f5c6a;
-            --accent: #ead7db;
-            --background: #f9f7f8;
-            --card: #ffffff;
-            --text-dark: #2f2f2f;
-}
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.7;
-            color: var(--text-dark);
-            background-color: var(--background);
-        }
-       header {
-            background: linear-gradient(135deg, #8f5c6a, #b98b96);
-            color: white;
-            text-align: center;
-            padding: 3rem 1rem;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.7rem;
-            letter-spacing: 0.5px;
-        }
-        header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0.7rem auto 0;
-        }
-        .job-banner {
-            background-color: var(--highlight);
-            color: #6b4a4a;
-            text-align: center;
-            padding: 1rem;
-            font-weight: 600;
-        }
-        section {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 2rem;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        }
-        .reveal {
-            transform: translateY(35px);
-            transition: transform 0.8s ease;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ricca Neuda | Digital Marketing Portfolio</title>
+
+<meta name="description" content="Ricca Neuda – Digital Marketing Virtual Assistant specializing in content planning, CRM management, email marketing, and lead operations.">
+
+<style>
+:root {
+    --primary: #8f5c6a;
+    --accent: #ead7db;
+    --background: #f9f7f8;
+    --highlight: #ffffff;
+    --text-dark: #2f2f2f;
 }
 
-        .reveal.show {
-            transform: translateY(0);
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background-color: var(--background);
 }
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            font-size: 1.9rem;
-            position: relative;
-        }
-        h2::after {
-            content: "";
-            width: 60px;
-            height: 3px;
-            background: var(--accent);
-            display: block;
-            margin-top: 0.5rem;
-            border-radius: 10px;
+
+/* HEADER */
+header {
+    background: linear-gradient(135deg, #8f5c6a, #b98b96);
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.7rem;
+    letter-spacing: 0.5px;
+}
+
+header p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0.7rem auto 0;
+}
+
+/* JOB BANNER */
+.job-banner {
+    background-color: var(--highlight);
+    color: #6b4a4a;
+    text-align: center;
+    padding: 1rem;
+    font-weight: 600;
+}
+
+/* SECTIONS */
+section {
+    max-width: 1100px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+/* FADE IN ANIMATION */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+h2 {
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    font-size: 1.9rem;
+    position: relative;
+}
+
+h2::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: var(--accent);
+    display: block;
+    margin-top: 0.5rem;
+    border-radius: 10px;
 }
 
 /* ABOUT */
@@ -99,47 +117,50 @@ ul {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.experience-item {
-    background: #fbf9fa;
-    padding: 2rem;
-    border-radius: 16px;
-    margin-bottom: 4rem;
+.experience-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 .experience-item strong {
     font-size: 1.3rem;
     color: var(--primary);
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.6rem;
+}
+
+.experience-item p {
+    max-width: 900px;
+    margin-bottom: 1.4rem;
 }
 
 .experience-item img {
     display: block;
     max-width: 100%;
-    border-radius: 14px;
-    margin: 1.6rem auto 0;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+    border-radius: 12px;
+    margin: 1.5rem auto 0;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
 }
 
 /* WHY HIRE ME */
 .why-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.6rem;
+    gap: 1.5rem;
 }
 
 .why-card {
-    background: #fbf9fa;
-    padding: 1.9rem;
-    border-radius: 16px;
+    background: var(--background);
+    padding: 1.8rem;
+    border-radius: 14px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
 }
 
 .why-card h3 {
     margin-top: 0;
     color: var(--primary);
-    font-size: 1.15rem;
+    font-size: 1.2rem;
 }
-
 
 /* SKILLS */
 .skills {
@@ -202,7 +223,7 @@ footer {
         padding: 1.5rem;
     }
 }
- </style>
+</style>
 </head>
 
 <body>
@@ -219,12 +240,9 @@ footer {
     ✨ Open to Digital Marketing, CRM Management & Content Operations roles
 </div>
 
-    <section class="fade-in">
-<section id="about">
+<section id="about" class="fade-in">
     <h2>About Me</h2>
-
     <img src="profile.jpg" alt="Ricca Neuda profile photo" class="profile-pic">
-
     <p>
         I’m Ricca Neuda, a detail-driven Digital Marketing Virtual Assistant with hands-on
         experience supporting marketing teams behind the scenes.
@@ -236,54 +254,73 @@ footer {
     </p>
 </section>
 
-        <section class="fade-in">
-<section id="experience">
-    <h2>Work Experience & Proofs</h2>
+<section id="why-hire-me" class="fade-in">
+    <h2>Why Hire Me</h2>
+    <div class="why-grid">
+        <div class="why-card">
+            <h3>Reliable Execution</h3>
+            <p>I don’t just plan tasks — I follow through, meet deadlines, and keep systems running smoothly.</p>
+        </div>
 
+        <div class="why-card">
+            <h3>Detail-Oriented</h3>
+            <p>I catch small errors before they become big problems, especially in CRM and content workflows.</p>
+        </div>
+
+        <div class="why-card">
+            <h3>Marketing-Savvy Support</h3>
+            <p>I understand the “why” behind marketing tasks, not just the steps.</p>
+        </div>
+
+        <div class="why-card">
+            <h3>Low Supervision Needed</h3>
+            <p>I work independently and communicate clearly — saving you time and mental load.</p>
+        </div>
+    </div>
+</section>
+
+<section id="experience" class="fade-in">
+    <h2>Work Experience & Proofs</h2>
     <ul>
-        <li class="experience-item">
+        <li class="experience-item fade-in">
             <strong>Content Planning & Calendar Management</strong>
             <p>
                 Created and maintained structured content calendars to support
                 consistent posting, campaign alignment, and deadline tracking.
             </p>
-            <img src="content-calendar.png" alt="Content calendar proof">
+            <img src="content-calendar.jpg" alt="Content calendar proof">
         </li>
 
-        <section class="fade-in">
-        <li class="experience-item">
+        <li class="experience-item fade-in">
             <strong>Blog Writing & Content Publishing</strong>
             <p>
                 Assisted with blog creation, formatting, publishing,
                 and content organization to support SEO efforts.
             </p>
-            <img src="blog-posts.png" alt="Blog posts proof">
+            <img src="blog-posts.jpg" alt="Blog posts proof">
         </li>
 
-            <section class="fade-in">
-        <li class="experience-item">
+        <li class="experience-item fade-in">
             <strong>CRM Management (Follow Up Boss)</strong>
             <p>
                 Managed CRM records, follow-ups, and lead organization
                 to keep pipelines accurate and actionable.
             </p>
-            <img src="crm.png" alt="CRM proof">
+            <img src="crm.jpg" alt="CRM proof">
         </li>
 
-                <section class="fade-in">
-        <li class="experience-item">
+        <li class="experience-item fade-in">
             <strong>Email Campaign & Newsletter Support</strong>
             <p>
                 Assisted with email setup, scheduling, list management,
                 and newsletter distribution across platforms.
             </p>
-            <img src="email-campaigns.png" alt="Email campaigns proof">
+            <img src="email-campaigns.jpg" alt="Email campaigns proof">
         </li>
     </ul>
 </section>
 
-                <section class="fade-in">
-<section id="skills">
+<section id="skills" class="fade-in">
     <h2>Core Skills & Tools</h2>
     <div class="skills">
         <div class="skill">CRM Management (Follow Up Boss)</div>
@@ -295,8 +332,7 @@ footer {
     </div>
 </section>
 
-                    <section class="fade-in">
-<section id="contact">
+<section id="contact" class="fade-in">
     <h2>Let’s Connect</h2>
     <p>
         Interested in working together or learning more about my experience?
@@ -315,6 +351,19 @@ footer {
     <p>&copy; 2026 Ricca Neuda. All rights reserved.</p>
 </footer>
 
+<script>
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('.fade-in').forEach(el => {
+    observer.observe(el);
+});
+</script>
+
 </body>
 </html>
-
