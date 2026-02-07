@@ -1,655 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ricca Neuda | Professional Virtual Assistant</title>
 
-<title>Ricca Neuda | Digital Marketing Portfolio</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<meta name="description" content="Ricca Neuda – Digital Marketing Virtual Assistant specializing in content planning, CRM management, email marketing, and lead operations.">
+<!-- AOS Animations -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
 <style>
 :root {
-    --primary: #b76e79;
-    --accent: #e8cfcf;
-    --background: #faf7f7;
-    --highlight: #f3e6dc;
-    --text-dark: #333;
+  --bg: #faf8f4;
+  --alt-bg: #f5f1ec;
+  --surface: #ffffff;
+  --text: #1c1c1c;
+  --muted: #6b6b6b;
+  --accent: #b59b7c;
+  --border: #e7e3dd;
+  --button: #111111;
 }
+
+[data-theme="dark"] {
+  --bg: #111111;
+  --alt-bg: #1a1a1a;
+  --surface: #1a1a1a;
+  --text: #f4f4f4;
+  --muted: #b5b5b5;
+  --border: #2a2a2a;
+  --button: #ffffff;
+}
+
+* { box-sizing: border-box; }
 
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.7;
-    color: var(--text-dark);
-    background-color: var(--background);
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+  font-size: 16px;
 }
 
-/* HEADER */
-header {
-    background: linear-gradient(135deg, #b76e79, #d8a7af);
-    color: white;
-    text-align: center;
-    padding: 3rem 1rem;
-}
+/* HEADINGS */
+h1, h2, h3, h4 { font-family: 'Playfair Display', serif; line-height: 1.3; margin: 0 0 1rem; }
+h1 { font-size: 3rem; line-height: 1.1; font-weight: 700; }
+h2 { font-size: 2.4rem; margin-bottom: 1rem; }
+h3 { font-size: 1.7rem; margin-bottom: 0.8rem; }
 
-header h1 {
-    margin: 0;
-    font-size: 2.7rem;
-    letter-spacing: 0.5px;
-}
-
-header p {
-    font-size: 1.2rem;
-    max-width: 800px;
-    margin: 0.7rem auto 0;
-}
-
-/* JOB BANNER */
-.job-banner {
-    background-color: var(--highlight);
-    color: #6b4a4a;
-    text-align: center;
-    padding: 1rem;
-    font-weight: 600;
-}
+/* SECONDARY INFO */
+.info-text { font-family: 'Roboto Mono', monospace; color: var(--accent); font-size: 0.8rem; display: block; margin-top: .3rem; }
 
 /* SECTIONS */
-section {
-    max-width: 1100px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-}
+section { padding: 6rem 6vw; }
+section.alt { background: var(--alt-bg); }
+.container { max-width: 1200px; margin: auto; }
 
-/* FADE IN ANIMATION */
-.fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
+/* NAV */
+header { display: flex; justify-content: space-between; align-items: center; padding: 2rem 6vw; font-size: 20px; }
+nav a { margin-left: 2rem; text-decoration: none; color: var(--text); font-weight: 500; transition: transform .2s; }
+nav a:hover { transform: scale(1.05); }
+.cta { padding: .7rem 1.4rem; background: var(--button); color: var(--bg); border-radius: 999px; text-decoration: none; font-size: 18px; }
+.toggle { cursor: pointer; border: 1px solid var(--border); padding: .5rem .9rem; border-radius: 8px; margin-left: 1rem; }
 
-.fade-in.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-h2 {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-    font-size: 1.9rem;
-    position: relative;
-}
-
-h2::after {
-    content: "";
-    width: 60px;
-    height: 3px;
-    background: var(--accent);
-    display: block;
-    margin-top: 0.5rem;
-    border-radius: 10px;
-}
+/* HERO */
+.hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+.badge { display: inline-block; padding: .5rem 1.2rem; border: 1px solid var(--border); border-radius: 999px; margin-bottom: 1rem; font-size: 1rem; }
+.hero img { width: 100%; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,.08); }
+.buttons a { margin-right: 1rem; }
+.outline { border: 1px solid var(--border); padding: .7rem 1.4rem; border-radius: 999px; color: var(--text); text-decoration: none; }
 
 /* ABOUT */
-.profile-pic {
-    max-width: 180px;
-    border-radius: 50%;
-    display: block;
-    margin: 1.5rem auto;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+.about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+.strength-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1.5rem; margin-bottom: 1rem; }
+
+/* SERVICES */
+.service-card { display: flex; flex-direction: column; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform .3s; cursor: pointer; text-align: center; }
+.service-card:hover { transform: translateY(-5px) scale(1.02); }
+.service-card span.emoji { font-size: 3rem; margin-bottom: 1rem; transition: transform .3s; }
+.service-card:hover span.emoji { transform: rotate(15deg); }
+.service-card p,
+.process-step p {
+  font-size: 0.95rem;
 }
 
-/* EXPERIENCE */
-ul {
-    list-style: none;
-    padding: 0;
+
+/* CARDS */
+.grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(260px,1fr)); gap: 2rem; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform .3s; }
+.card:hover { transform: translateY(-5px); }
+.card hr { border: 0; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.card p {
+  font-size: 0.95rem;
 }
 
-.experience-item {
-    background: var(--background);
-    padding: 2rem;
-    border-radius: 14px;
-    margin-bottom: 4rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+/* PROCESS */
+.process-step { display: flex; flex-direction: column; align-items: center; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; transition: transform .3s; cursor: pointer; text-align: center; }
+.process-step:hover { transform: translateY(-5px) scale(1.02); }
+.process-step span.number { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
+
+/* CONTACT BOX */
+.contact-center { text-align: center; margin-top: 2rem; }
+.contact-center a { padding: .7rem 1.4rem; background: var(--button); color: var(--bg); border-radius: 999px; text-decoration: none; display: inline-block; margin-top: 1rem; transition: transform .2s; }
+.contact-center a:hover { transform: scale(1.05); }
+
+/* PORTFOLIO + TOOLS PILLS */
+.tool-pill {
+  display: inline-block;
+  background: #ffffff;
+  color: var(--accent);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: .3rem .75rem;
+  margin: 0 .3rem .3rem 0;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75rem;
+  cursor: default;
+  transition: background .25s ease, color .25s ease, transform .2s ease;
 }
 
-.experience-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+.tool-pill:hover {
+  background: var(--accent);
+  color: #ffffff;
+  transform: scale(1.05);
 }
 
-.experience-item strong {
-    font-size: 1.3rem;
-    color: var(--primary);
-    display: block;
-    margin-bottom: 0.6rem;
-}
-
-.experience-item p {
-    max-width: 900px;
-    margin-bottom: 1.4rem;
-}
-
-.experience-item img {
-    display: block;
-    max-width: 100%;
-    border-radius: 12px;
-    margin: 1.5rem auto 0;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-/* WHY HIRE ME */
-.why-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-}
-
-.why-card {
-    background: var(--background);
-    padding: 1.8rem;
-    border-radius: 14px;
-    box-shadow: 0 6px 16px rgba(0,0,0,0.05);
-}
-
-.why-card h3 {
-    margin-top: 0;
-    color: var(--primary);
-    font-size: 1.2rem;
-}
-
-/* SKILLS */
-.skills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
-
-.skill {
-    background: var(--accent);
-    padding: 0.7rem 1.2rem;
-    border-radius: 30px;
-    font-size: 0.95rem;
-    font-weight: 500;
-}
-
-/* CONTACT */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-input, textarea {
-    padding: 0.8rem;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-}
-
-button {
-    background: var(--primary);
-    color: white;
-    border: none;
-    padding: 0.9rem;
-    border-radius: 30px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s ease;
-}
-
-button:hover {
-    background: #9f5c65;
-}
+/* TOOLS & SKILLS */
+.tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.tools-category { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; text-align: left; }
+.tools-category span.tool-pill { margin-bottom: .3rem; display: inline-block; }
 
 /* FOOTER */
-footer {
-    text-align: center;
-    padding: 2rem;
-    background: #2f2f2f;
-    color: white;
-}
+footer { background: #0f0f0f; color: #fff; padding: 4rem 6vw; font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; }
+footer div { flex: 1; min-width: 180px; margin-bottom: 1rem; }
+footer a { color: #fff; text-decoration: none; display:block; margin:.3rem 0; transition: transform .2s; }
+footer a:hover { transform: translateY(-3px) scale(1.05); }
+footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border); padding-top:1rem; color:#bbb; text-align:center; }
 
-/* MOBILE */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    section {
-        margin: 1.5rem;
-        padding: 1.5rem;
-    }
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero { grid-template-columns: 1fr; }
+  .about-grid { grid-template-columns: 1fr; }
 }
-.lightbox {
-    display: none; /* hidden by default */
-    position: fixed;
-    z-index: 9999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.8);
-    justify-content: center;
-    align-items: center;
-}
-
-.lightbox.active {
-    display: flex; /* show when active */
-}
-
-.lightbox-content {
-    position: relative;
-    max-width: 90%;
-    max-height: 90%;
-}
-/* ===== NAV BUTTONS ===== */
-.nav {
-    position: absolute; /* position relative to .slider */
-    top: 50%;           /* vertically center */
-    transform: translateY(-50%); /* adjust exact middle */
-    background: rgba(0,0,0,0.4); 
-    color: white;
-    border: none;
-    font-size: 2.5rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 50%;
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s ease;
-    z-index: 10; /* make sure it’s above the image */
-}
-
-.nav.prev {
-    left: 10px; /* distance from the left side */
-}
-
-.nav.next {
-    right: 10px; /* distance from the right side */
-}
-
-.nav:hover {
-    background: rgba(0,0,0,0.7);
-}
-
-
-/* ===== SLIDE DOTS ===== */
-.slide-dot {
-    height: 12px;
-    width: 12px;
-    margin: 0 4px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-    transition: background 0.3s ease;
-}
-
-.slider {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.slide-dot.active {
-    background-color: var(--primary);
-}
-
-/* Optional: slider image */
-.slider img {
-    max-width: 100%;
-    max-height: 70vh;a
-    object-fit: contain;
-    border-radius: 12px;
-}
-
-
 </style>
-
 </head>
-
 <body>
 
 <header>
-    <h1>Ricca Neuda</h1>
-    <p>
-        Digital Marketing Virtual Assistant helping brands stay organized,
-        visible, and connected through content, CRM, and email systems.
-    </p>
+  <strong>Ricca Neuda</strong>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#work">Portfolio</a>
+    <a href="#services">Services</a>
+    <a href="#tools">Tools & Skills</a>
+    <a href="#process">Process</a>
+    <a href="#contact" class="cta">Let's Talk</a>
+    <span class="toggle" onclick="toggleTheme()">🌙</span>
+  </nav>
 </header>
 
-<div class="job-banner">
-    ✨ Open to Digital Marketing, CRM Management & Content Operations roles
+<!-- HERO -->
+<section class="hero container" data-aos="fade-up">
+  <div>
+    <span class="badge">Your Creative Right Hand</span>
+    <h1>I help business owners <span style="color:var(--accent)">scale their vision</span><br>without the overwhelm</h1>
+    <p>Virtual assistant, content creator, and marketing support specialist who turns your to-do list into done.</p>
+    <div class="buttons">
+      <a href="#contact" class="cta">Hire Me</a>
+      <a href="#work" class="outline">View My Work</a>
+    </div>
+  </div>
+  <img src="profile.jpg" alt="Ricca Neuda" />
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="container alt" data-aos="fade-up">
+  <h2>About Me</h2>
+  <div class="about-grid">
+    <div>
+      <p>Hello! I'm <strong>Ricca Neuda</strong>, a professional virtual assistant with a passion for helping business owners streamline their operations and scale efficiently. With over 5 years of experience, I specialize in content creation, project management, and marketing support. I turn your to-do list into done so you can focus on what matters most—growing your business.</p>
+    </div>
+    <div>
+      <div class="strength-card"><strong>💖 Genuinely Invested</strong><p>Your success is my success. I'm not just completing tasks — I'm helping build your dream.</p></div>
+      <div class="strength-card"><strong>🔍 Detail-Oriented</strong><p>Nothing falls through the cracks. I catch what others miss and deliver excellence every time.</p></div>
+      <div class="strength-card"><strong>⚡ Proactive & Fast</strong><p>I don't wait to be told. I see opportunities, solve problems, and keep momentum going.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="work" class="container" data-aos="fade-up">
+<h2>Portfolio - Recent Work & Results</h2>
+<p>Note: Representative examples of my work. Actual project details are confidential to protect client privacy.</p>
+
+<div class="grid">
+<!-- Social Media Project -->
+<div class="card">
+<span class="tool-pill">Social Media</span>
+<h3>Brand Social Media Management</h3>
+<p>Complete social media strategy and daily content management for real estate, increasing engagement by 150%.</p>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Canva</span>
+<span class="tool-pill">Later</span>
+<span class="tool-pill">Instagram</span>
+<span class="tool-pill">Facebook</span>
+<span class="tool-pill">LinkedIn</span>
+<span class="tool-pill">Youtube</span>
+<p class="info-text">150% engagement increase</p>
 </div>
 
-<section id="about" class="fade-in">
-    <h2>About Me</h2>
-    <img src="profile.png" alt="Ricca Neuda profile photo" class="profile-pic">
-    <p>
-        I’m Ricca Neuda, a detail-driven Digital Marketing Virtual Assistant with hands-on
-        experience supporting marketing teams behind the scenes.
-    </p>
-    <p>
-        I specialize in content planning, CRM organization, email campaigns,
-        and lead management — making sure strategies don’t just look good,
-        but actually get executed.
-    </p>
+<!-- Marketing Project -->
+<div class="card">
+<span class="tool-pill">Marketing</span>
+<h3>Email Marketing Campaign</h3>
+<p>Developed and executed 6-month email marketing campaign resulting in 35% open rate improvement.</p>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Mailchimp</span>
+<span class="tool-pill">Flodesk</span>
+<span class="tool-pill">Canva</span>
+<span class="tool-pill">Google Analytics</span>
+<p class="info-text">35% open rate boost</p>
+</div>
+
+<!-- Project Management -->
+<div class="card">
+<span class="tool-pill">Project Management</span>
+<h3>Project Workflow Optimization</h3>
+<p>Streamlined team workflows using Notion, reducing project completion time by 40%.</p>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Notion</span>
+<span class="tool-pill">Google sheets</span>
+<span class="tool-pill">Slack</span>
+<p class="info-text">40% time savings</p>
+</div>
+
+<!-- Content Strategy -->
+<div class="card">
+<span class="tool-pill">Content Strategy</span>
+<h3>Content Calendar System</h3>
+<p>Built comprehensive content planning system enabling 3 months of advance content scheduling.</p>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Notion</span>
+<span class="tool-pill">Basecamp</span>
+<span class="tool-pill">Google Workspace</span>
+</div>
+
+<!-- Operations -->
+<div class="card">
+<span class="tool-pill">Operations</span>
+<h3>Client Onboarding Automation</h3>
+<p>Created automated client onboarding system, improving response time and client satisfaction.</p>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Gmail</span>
+<span class="tool-pill">Google Forms</span>
+<p class="info-text">90% faster onboarding</p>
+</div>
+
+<!-- Event Management -->
+<div class="card">
+<span class="tool-pill">Event Management</span>
+<h3>Virtual Event Coordination</h3>
+<hr>
+<p class="info-text">Tools used:</p>
+<span class="tool-pill">Zoom</span>
+<span class="tool-pill">Calendly</span>
+<span class="tool-pill">Notion</span>
+<p class="info-text">200+ attendees</p>
+</div>
+</div>
 </section>
 
-<section id="why-hire-me" class="fade-in">
-    <h2>Why Hire Me</h2>
-    <div class="why-grid">
-        <div class="why-card">
-            <h3>Reliable Execution</h3>
-            <p>I don’t just plan tasks — I follow through, meet deadlines, and keep systems running smoothly.</p>
-        </div>
-
-        <div class="why-card">
-            <h3>Detail-Oriented</h3>
-            <p>I catch small errors before they become big problems, especially in CRM and content workflows.</p>
-        </div>
-
-        <div class="why-card">
-            <h3>Marketing-Savvy Support</h3>
-            <p>I understand the “why” behind marketing tasks, not just the steps.</p>
-        </div>
-
-        <div class="why-card">
-            <h3>Low Supervision Needed</h3>
-            <p>I work independently and communicate clearly — saving you time and mental load.</p>
-        </div>
-    </div>
+<!-- SERVICES -->
+<section id="services" class="container alt" data-aos="fade-up">
+<h2>Services</h2>
+<div class="grid">
+<div class="service-card"><span class="emoji">📧</span><h3>Virtual Assistance</h3><p>Manage emails, calendars, client communications, and day-to-day operations so you can focus on strategic growth.</p></div>
+<div class="service-card"><span class="emoji">🎨</span><h3>Content Creation</h3><p>Design graphics, write copy, manage social media, and create engaging content that connects with your audience.</p></div>
+<div class="service-card"><span class="emoji">📈</span><h3>Marketing Support</h3><p>Support campaigns, automate workflows, track metrics, and provide insights to maximize your marketing ROI.</p></div>
+<div class="service-card"><span class="emoji">🗂️</span><h3>Project Management</h3><p>Organize tasks, set timelines, and coordinate teams to ensure projects are delivered on time and on brand.</p></div>
+</div>
 </section>
 
-<section id="experience" class="fade-in">
-    <h2>Work Experiences</h2>
-    <ul>
-        <li class="experience-item fade-in">
-            <strong>Content Planning & Calendar Management</strong>
-            <p>
-                Created and maintained structured content calendars to support
-                consistent posting, campaign alignment, and deadline tracking.
-            </p>
-            <img 
-  src="content-calendar.png" 
-  alt="Content calendar proof"
-  onclick="openLightbox('content')"
-  style="cursor:pointer;"
->
-        </li>
-
-        <li class="experience-item fade-in">
-            <strong>Blog Writing & Content Publishing</strong>
-            <p>
-                Assisted with blog creation, formatting, publishing,
-                and content organization to support SEO efforts.
-            </p>
-            <img 
-  src="blog-posts.png" 
-  alt="Blog posts proof"
-  onclick="openLightbox('blogging')"
-  style="cursor:pointer;"
->
-
-        </li>
-
-        <li class="experience-item fade-in">
-            <strong>CRM Management (Follow Up Boss)</strong>
-            <p>
-                Managed CRM records, follow-ups, and lead organization
-                to keep pipelines accurate and actionable.
-            </p>
-            <img 
-  src="crm.png" 
-  style="cursor:pointer;"
->
-        </li>
-
-        <li class="experience-item fade-in">
-            <strong>Email Campaign & Newsletter Support</strong>
-            <p>
-                Assisted with email setup, scheduling, list management,
-                and newsletter distribution across platforms.
-            </p>
-            <img 
-  src="email-campaigns.png" 
-  alt="Email campaigns proof"
-  onclick="openLightbox('email')"
-  style="cursor:pointer;"
->
-        </li>
-    </ul>
+<!-- TOOLS & SKILLS -->
+<section id="tools" class="container" data-aos="fade-up">
+<h2>Tools & Skills</h2>
+<p>I'm platform-agnostic and quick to learn. If you use something not listed here, I'll get up to speed fast.</p>
+<div class="tools-grid">
+<div class="tools-category"><strong>Communication</strong><hr>
+<span class="tool-pill">Zoom</span>
+<span class="tool-pill">Gmail</span>
+<span class="tool-pill">Microsoft Teams</span>
+</div>
+<div class="tools-category"><strong>Project Management</strong><hr>
+<span class="tool-pill">Google Docs</span>
+<span class="tool-pill">Basecamp</span>
+<span class="tool-pill">Notion</span>
+</div>
+<div class="tools-category"><strong>Design & Content</strong><hr>
+<span class="tool-pill">Canva</span>
+<span class="tool-pill">Capcut</span>
+</div>
+<div class="tools-category"><strong>Social Media</strong><hr>
+<span class="tool-pill">Later</span>
+<span class="tool-pill">Buffer</span>
+<span class="tool-pill">Hootsuite</span>
+<span class="tool-pill">Meta Business Suite</span>
+</div>
+<div class="tools-category"><strong>Marketing</strong><hr>
+<span class="tool-pill">Mailchimp</span>
+<span class="tool-pill">Activecampaign</span>
+<span class="tool-pill">Flodesk</span>
+</div>
+<div class="tools-category"><strong>Productivity</strong><hr>
+<span class="tool-pill">Google Workspace</span>
+<span class="tool-pill">Calendly</span>
+<span class="tool-pill">Dubsado</span>
+<span class="tool-pill">Airtable</span>
+</div>
+</div>
 </section>
 
-<section id="skills" class="fade-in">
-    <h2>Core Skills & Tools</h2>
-    <div class="skills">
-        <div class="skill">CRM Management (Follow Up Boss)</div>
-        <div class="skill">Content Calendar Management</div>
-        <div class="skill">Email Marketing Platforms (Mailchimp, ActiveCampaign, Flodesk)</div>
-        <div class="skill">Blog Writing & Publishing (using AI tools)</div>
-        <div class="skill">Lead Management</div>
-        <div class="skill">Social Media Content Planning</div>
-        <div class="skill">Marketing Support & Coordination</div>
-        <div class="skill">SEO Basics & Keyword Research</div>
-        <div class="skill">Graphic Tools (Canva, CapCut)</div>
-        <div class="skill">Scheduling Tools (Calendly, Google Calendar)</div>
-        <div class="skill">Microsoft Office / Google Workspace</div>
-        <div class="skill">Attention to Detail & Process Optimization</div>
-        <div class="skill">Project & Task Management (Notion, Basecamp)</div>
-        <div class="skill">Reporting & Analytics (Google Analytics, CRM Reports)</div>
-        <div class="skill">Communication & Client Coordination</div>
-    </div>
+<!-- PROCESS -->
+<section id="process" class="container alt" data-aos="fade-up">
+<h2>Process: How We Will Work Together</h2>
+<p>Simple, transparent, and designed to get you results fast.</p>
+<div class="grid">
+<div class="process-step"><span class="number">01</span><h3>Inquiry</h3><p>Reach out via email or the contact form. Tell me about your business and what you need help with.</p></div>
+<div class="process-step"><span class="number">02</span><h3>Discovery</h3><p>We'll hop on a call to discuss your goals, workflows, and how I can best support your vision.</p></div>
+<div class="process-step"><span class="number">03</span><h3>Execution</h3><p>I dive in and start delivering results. You'll see immediate improvements in your workflows and output.</p></div>
+<div class="process-step"><span class="number">04</span><h3>Ongoing Support</h3><p>Regular check-ins, continuous optimization, and proactive support to keep your business thriving.</p></div>
+</div>
 </section>
 
-
-<section id="contact" class="fade-in">
-    <h2>Let’s Connect</h2>
-    <p>
-        Interested in working together or learning more about my experience?
-        You can either send me a message or book a call directly. I’d love to hear from you!
-    </p>
-
-    <!-- Email Form -->
-    <form action="mailto:riccaneuda38@gmail.com" method="post" enctype="text/plain">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea rows="5" placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-
-    <!-- Book a Call Button -->
-    <div style="text-align:center; margin-top:2rem;">
-        <a href="https://calendly.com/riccaneuda24/consultationwithricca">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.9rem 2rem; border-radius: 30px; font-size: 1rem; cursor: pointer; transition: background 0.2s ease;">
-                📅 Book a Call!
-            </button>
-        </a>
-    </div>
-</section>
-<section id="other-contacts" class="fade-in">
-    <h2>Other Ways to Connect</h2>
-    <p>You can also reach me through my professional or social profiles:</p>
-
-    <div class="other-links" style="display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; margin-top:1rem;">
-        <a href="https://www.linkedin.com/in/ricca-neuda-217904287/">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                LinkedIn
-            </button>
-        </a>
-        <a href="https://www.upwork.com/freelancers/~018531cea095adf105?mp_source=share" target="_blank">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                Upwork
-            </button>
-        </a>
-        <a href="https://www.onlinejobs.ph/jobseekers/info/2152693" target="_blank">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                OnlineJobs.ph
-            </button>
-        </a>
-        <a href="https://www.instagram.com/riccaneuda/?hl=en" target="_blank">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                Instagram
-            </button>
-        </a>
-        <a href="https://wa.me/+639709926010" target="_blank">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                WhatsApp
-            </button>
-        </a>
-        <a href="viber://chat?number=+639709926010" target="_blank">
-            <button style="background: var(--primary); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 30px; cursor:pointer; transition: background 0.2s ease;">
-                Viber
-            </button>
-        </a>
-    </div>
+<!-- LET'S WORK TOGETHER -->
+<section id="contact" class="container" data-aos="fade-up">
+<div class="contact-center">
+<h2>Let's Work Together</h2>
+<p>Ready to get your time back? Let's chat about how I can support your business and help you focus on what you do best. No pressure, just a friendly conversation about your goals and how I can help you achieve them.</p>
+<p>I typically respond within 24 hours.</p>
+<a href="mailto:riccaneuda38@gmail.com">Let's Connect</a>
+</div>
 </section>
 
-
+<!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 Ricca Neuda. All rights reserved.</p>
+<div>
+<strong>Ricca Neuda</strong><br>Your creative right hand for business growth
+</div>
+<div>
+<strong>Quick Links</strong>
+<a href="#about">About</a>
+<a href="#work">Portfolio</a>
+<a href="#services">Services</a>
+<a href="#tools">Tools & Skills</a>
+<a href="#process">Process</a>
+<a href="#contact">Contact</a>
+</div>
+<div>
+<strong>Connect</strong>
+<a href="mailto:ricca.neuda@example.com">Email</a>
+<p>Based in: Available for remote work</p>
+<p>Availability: Accepting new clients</p>
+</div>
+<div class="bottom">
+<p>© 2026 Ricca Neuda. All rights reserved.</p>
+</div>
 </footer>
 
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 <script>
-/* ===== FADE-IN OBSERVER ===== */
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-        }
-    });
-}, { threshold: 0.2 });
-
-document.querySelectorAll('.fade-in').forEach(el => {
-    observer.observe(el);
-});
-
-/* ===== GALLERIES ===== */
-const galleries = {
-    blogging: {
-        title: "Blog Writing & Content Publishing",
-        images: [
-            "blog1.png",
-            "blog2.png",
-        ]
-    },
-    content: {
-        title: "Content Planning & Calendars",
-        images: [
-            "calendar1.png",
-            "calendar2.png",
-            "calendar3.png"
-        ]
-    },
-    email: {
-        title: "Email Campaign Proofs",
-        images: [
-            "email1.png",
-            "email2.png",
-            "email3.png"
-        ]
-    }
-};
-
-// ===== Lightbox Slider =====
-let currentCategory = "";
-let currentIndex = 0;
-
-function openLightbox(category) {
-    currentCategory = category;
-    currentIndex = 0;
-    document.getElementById("lightbox-title").textContent = galleries[category].title;
-    updateSlide();
-    document.getElementById("lightbox").classList.add("active");
+AOS.init({ once: true, duration: 800, offset: 120 });
+function toggleTheme(){
+  document.body.dataset.theme = document.body.dataset.theme === 'dark' ? '' : 'dark';
 }
-
-function updateSlide() {
-    const images = galleries[currentCategory].images;
-    const sliderImage = document.getElementById("slider-image");
-    sliderImage.src = images[currentIndex];
-
-    // Update dots
-    const dotsContainer = document.getElementById("slider-dots");
-    dotsContainer.innerHTML = "";
-    images.forEach((img, i) => {
-        const dot = document.createElement("span");
-        dot.classList.add("slide-dot");
-        if (i === currentIndex) dot.classList.add("active");
-        dot.addEventListener("click", () => {
-            currentIndex = i;
-            updateSlide();
-        });
-        dotsContainer.appendChild(dot);
-    });
-}
-
-function changeSlide(direction) {
-    const images = galleries[currentCategory].images;
-    currentIndex += direction;
-    if (currentIndex < 0) currentIndex = images.length - 1;
-    if (currentIndex >= images.length) currentIndex = 0;
-    updateSlide();
-}
-
-function closeLightbox() {
-    document.getElementById("lightbox").classList.remove("active");
-}
-
-function outsideClick(e) {
-    if (e.target.id === "lightbox") {
-        closeLightbox();
-    }
-}
-
-// ===== MOBILE SWIPE SUPPORT =====
-let startX = 0;
-let endX = 0;
-
-
 </script>
-
-<div id="lightbox" class="lightbox" onclick="outsideClick(event)">
-  <div class="lightbox-content">
-    <span class="lightbox-close" onclick="closeLightbox()">×</span>
-    <h3 id="lightbox-title"></h3>
-
-    <div class="slider">
-      <button class="nav prev" onclick="changeSlide(-1)">❮</button>
-      <img id="slider-image" src="" alt="Preview">
-      <button class="nav next" onclick="changeSlide(1)">❯</button>
-    </div>
-
-    <div id="slider-dots" style="text-align:center; margin-top:10px;"></div>
-  </div>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const sliderImg = document.getElementById("slider-image");
-
-    sliderImg.addEventListener("touchstart", (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    sliderImg.addEventListener("touchend", (e) => {
-        endX = e.changedTouches[0].clientX;
-        const diff = endX - startX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) changeSlide(-1);
-            else changeSlide(1);
-        }
-    });
-});
-</script>
-
-
-
 </body>
 </html>
-
-
-
-
