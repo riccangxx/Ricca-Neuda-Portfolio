@@ -223,7 +223,56 @@ footer {
         padding: 1.5rem;
     }
 }
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    background: white;
+    border-radius: 16px;
+    max-width: 900px;
+    width: 100%;
+    padding: 1.5rem;
+    position: relative;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+}
+
+.lightbox-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.lightbox-gallery img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+}
+
 </style>
+
 </head>
 
 <body>
@@ -288,7 +337,12 @@ footer {
                 Created and maintained structured content calendars to support
                 consistent posting, campaign alignment, and deadline tracking.
             </p>
-            <img src="content-calendar.png" alt="Content calendar proof">
+            <img 
+  src="content-calendar.png" 
+  alt="Content calendar proof"
+  onclick="openLightbox('blogging')"
+  style="cursor:pointer;"
+>
         </li>
 
         <li class="experience-item fade-in">
@@ -297,7 +351,13 @@ footer {
                 Assisted with blog creation, formatting, publishing,
                 and content organization to support SEO efforts.
             </p>
-            <img src="blog-posts.png" alt="Blog posts proof">
+            <img 
+  src="blog-posts.png" 
+  alt="Blog posts proof"
+  onclick="openLightbox('blogging')"
+  style="cursor:pointer;"
+>
+
         </li>
 
         <li class="experience-item fade-in">
@@ -306,7 +366,12 @@ footer {
                 Managed CRM records, follow-ups, and lead organization
                 to keep pipelines accurate and actionable.
             </p>
-            <img src="crm.png" alt="CRM proof">
+            <img 
+  src="crm.png" 
+  alt="CRM proof"
+  onclick="openLightbox('blogging')"
+  style="cursor:pointer;"
+>
         </li>
 
         <li class="experience-item fade-in">
@@ -315,7 +380,12 @@ footer {
                 Assisted with email setup, scheduling, list management,
                 and newsletter distribution across platforms.
             </p>
-            <img src="email-campaigns.png" alt="Email campaigns proof">
+            <img 
+  src="email-campaigns.png" 
+  alt="Email campaigns proof"
+  onclick="openLightbox('blogging')"
+  style="cursor:pointer;"
+>
         </li>
     </ul>
 </section>
@@ -421,10 +491,74 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
+const galleries = {
+    blogging: {
+        title: "Blog Writing & Content Publishing",
+        images: [
+            "blog1.png",
+            "blog2.png",
+            "blog3.png",
+            "blog4.png"
+        ]
+    },
+    content: {
+        title: "Content Planning & Calendars",
+        images: [
+            "calendar1.png",
+            "calendar2.png",
+            "calendar3.png"
+        ]
+    },
+    crm: {
+        title: "CRM Management Proofs",
+        images: [
+            "crm1.png",
+            "crm2.png",
+            "crm3.png"
+        ]
+    },
+    email: {
+        title: "Email Campaign Proofs",
+        images: [
+            "email1.png",
+            "email2.png",
+            "email3.png"
+        ]
+    }
+};
+
+
+function openLightbox(type) {
+    const lightbox = document.getElementById("lightbox");
+    const gallery = document.getElementById("lightbox-gallery");
+    const title = document.getElementById("lightbox-title");
+
+    gallery.innerHTML = "";
+    title.textContent = galleries[type].title;
+
+    galleries[type].images.forEach(src => {
+        const img = document.createElement("img");
+        img.src = src;
+        gallery.appendChild(img);
+    });
+
+    lightbox.classList.add("active");
+}
+
+function closeLightbox() {
+    document.getElementById("lightbox").classList.remove("active");
+}
+
 </script>
+<div class="lightbox" id="lightbox">
+    <div class="lightbox-content">
+        <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+        <h3 id="lightbox-title">Work Samples</h3>
+        <div class="lightbox-gallery" id="lightbox-gallery"></div>
+    </div>
+</div>
 
 </body>
 </html>
-
 
 
