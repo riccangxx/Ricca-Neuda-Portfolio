@@ -272,7 +272,7 @@ nav a:hover { transform: scale(1.05); }
   margin: 0 .3rem .3rem 0;
   font-family: 'Roboto Mono', monospace;
   font-size: 0.75rem;
-  cursor: default;
+  cursor: pointer;
   transition: background .25s ease, color .25s ease, transform .2s ease;
 }
 
@@ -284,7 +284,22 @@ nav a:hover { transform: scale(1.05); }
 
 /* TOOLS & SKILLS */
 .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem; }
-.tools-category { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 1rem; text-align: left; }
+.tools-category {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  text-align: left;
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.tools-category:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+}
+
 .tools-category span.tool-pill { margin-bottom: .3rem; display: inline-block; }
 
 /* FOOTER */
@@ -412,7 +427,7 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
   <div class="container hero-grid">
 
     <div class="hero-text">
-      <span class="badge">Your Creative Right Hand</span>
+      <span class="badge">✨Your Creative Right Hand</span>
       <h1>I help business owners <span class="highlight">scale their vision</span><br>without the overwhelm</h1>
      <p class="hero-description">
   Virtual assistant, content creator, and marketing support specialist who turns your to-do list into done.
@@ -428,6 +443,7 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
     </div>
 
   </div>
+
 </section>
 
 
