@@ -223,7 +223,7 @@ footer {
         padding: 1.5rem;
     }
 }
-/* LIGHTBOX */
+/* ===== LIGHTBOX ===== */
 .lightbox {
     display: none;
     position: fixed;
@@ -232,7 +232,6 @@ footer {
     z-index: 999;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
 }
 
 .lightbox.active {
@@ -240,36 +239,48 @@ footer {
 }
 
 .lightbox-content {
-    background: white;
+    background: #fff;
     border-radius: 16px;
     max-width: 900px;
-    width: 100%;
+    width: 90%;
+    max-height: 90vh;
     padding: 1.5rem;
     position: relative;
+    overflow-y: auto; /* ✅ SCROLL FIX */
 }
 
 .lightbox-close {
     position: absolute;
-    top: 12px;
+    top: 10px;
     right: 16px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: #555;
 }
 
-.lightbox-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+/* ===== SLIDER ===== */
+.slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     gap: 1rem;
-    margin-top: 1rem;
 }
 
-.lightbox-gallery img {
-    width: 100%;
+.slider img {
+    max-width: 100%;
+    max-height: 70vh; /* ✅ handles different sizes */
+    object-fit: contain;
     border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
+
+/* ===== NAV BUTTONS ===== */
+.nav {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    user-select: none;
+}
+
 
 </style>
 
@@ -340,7 +351,7 @@ footer {
             <img 
   src="content-calendar.png" 
   alt="Content calendar proof"
-  onclick="openLightbox('blogging')"
+  onclick="openLightbox('content')"
   style="cursor:pointer;"
 >
         </li>
@@ -369,7 +380,7 @@ footer {
             <img 
   src="crm.png" 
   alt="CRM proof"
-  onclick="openLightbox('blogging')"
+  onclick="openLightbox('crm')"
   style="cursor:pointer;"
 >
         </li>
@@ -383,7 +394,7 @@ footer {
             <img 
   src="email-campaigns.png" 
   alt="Email campaigns proof"
-  onclick="openLightbox('blogging')"
+  onclick="openLightbox('email')"
   style="cursor:pointer;"
 >
         </li>
@@ -480,6 +491,7 @@ footer {
 </footer>
 
 <script>
+/* ===== FADE-IN OBSERVER ===== */
 const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -491,6 +503,8 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.fade-in').forEach(el => {
     observer.observe(el);
 });
+
+/* ===== GALLERIES ===== */
 const galleries = {
     blogging: {
         title: "Blog Writing & Content Publishing",
@@ -527,36 +541,61 @@ const galleries = {
     }
 };
 
+/* ===== LIGHTBOX SLIDER ===== */
+let currentCategory = "";
+let currentIndex = 0;
 
-function openLightbox(type) {
-    const lightbox = document.getElementById("lightbox");
-    const gallery = document.getElementById("lightbox-gallery");
-    const title = document.getElementById("lightbox-title");
+function openLightbox(category) {
+    currentCategory = category;
+    currentIndex = 0;
 
-    gallery.innerHTML = "";
-    title.textContent = galleries[type].title;
+    document.getElementById("lightbox-title").textContent =
+        galleries[category].title;
 
-    galleries[type].images.forEach(src => {
-        const img = document.createElement("img");
-        img.src = src;
-        gallery.appendChild(img);
-    });
+    updateSlide();
+    document.getElementById("lightbox").classList.add("active");
+}
 
-    lightbox.classList.add("active");
+function updateSlide() {
+    document.getElementById("slider-image").src =
+        galleries[currentCategory].images[currentIndex];
+}
+
+function changeSlide(direction) {
+    const images = galleries[currentCategory].images;
+    currentIndex += direction;
+
+    if (currentIndex < 0) currentIndex = images.length - 1;
+    if (currentIndex >= images.length) currentIndex = 0;
+
+    updateSlide();
 }
 
 function closeLightbox() {
     document.getElementById("lightbox").classList.remove("active");
 }
 
+function outsideClick(e) {
+    if (e.target.id === "lightbox") {
+        closeLightbox();
+    }
+}
 </script>
-<div class="lightbox" id="lightbox">
-    <div class="lightbox-content">
-        <span class="lightbox-close" onclick="closeLightbox()">✕</span>
-        <h3 id="lightbox-title">Work Samples</h3>
-        <div class="lightbox-gallery" id="lightbox-gallery"></div>
+
+<div id="lightbox" class="lightbox" onclick="outsideClick(event)">
+  <div class="lightbox-content">
+    <span class="lightbox-close" onclick="closeLightbox()">×</span>
+    <h3 id="lightbox-title"></h3>
+
+    <div class="slider">
+      <button class="nav prev" onclick="changeSlide(-1)">❮</button>
+      <img id="slider-image" src="" alt="Preview">
+      <button class="nav next" onclick="changeSlide(1)">❯</button>
     </div>
+  </div>
 </div>
+
+
 
 </body>
 </html>
