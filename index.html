@@ -223,64 +223,68 @@ footer {
         padding: 1.5rem;
     }
 }
-/* ===== LIGHTBOX ===== */
 .lightbox {
-    display: none;
+    display: none; /* hidden by default */
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.8);
-    z-index: 999;
+    z-index: 9999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
     justify-content: center;
     align-items: center;
 }
 
 .lightbox.active {
-    display: flex;
+    display: flex; /* show when active */
 }
 
 .lightbox-content {
-    background: #fff;
-    border-radius: 16px;
-    max-width: 900px;
-    width: 90%;
-    max-height: 90vh;
-    padding: 1.5rem;
     position: relative;
-    overflow-y: auto; /* ✅ SCROLL FIX */
+    max-width: 90%;
+    max-height: 90%;
 }
-
-.lightbox-close {
-    position: absolute;
-    top: 10px;
-    right: 16px;
-    font-size: 1.8rem;
+/* ===== NAV BUTTONS ===== */
+.nav {
+    background: rgba(0,0,0,0.4); /* semi-transparent dark background */
+    color: white;
+    border: none;
+    font-size: 2.5rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 50%;
     cursor: pointer;
+    user-select: none;
+    transition: background 0.2s ease;
 }
 
-/* ===== SLIDER ===== */
-.slider {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+.nav:hover {
+    background: rgba(0,0,0,0.7);
 }
 
+/* ===== SLIDE DOTS ===== */
+.slide-dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 4px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.slide-dot.active {
+    background-color: var(--primary);
+}
+
+/* Optional: slider image */
 .slider img {
     max-width: 100%;
-    max-height: 70vh; /* ✅ handles different sizes */
+    max-height: 70vh;a
     object-fit: contain;
     border-radius: 12px;
 }
-
-/* ===== NAV BUTTONS ===== */
-.nav {
-    background: none;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    user-select: none;
-}
-
 
 </style>
 
@@ -541,33 +545,43 @@ const galleries = {
     }
 };
 
-/* ===== LIGHTBOX SLIDER ===== */
+// ===== Lightbox Slider =====
 let currentCategory = "";
 let currentIndex = 0;
 
 function openLightbox(category) {
     currentCategory = category;
     currentIndex = 0;
-
-    document.getElementById("lightbox-title").textContent =
-        galleries[category].title;
-
+    document.getElementById("lightbox-title").textContent = galleries[category].title;
     updateSlide();
     document.getElementById("lightbox").classList.add("active");
 }
 
 function updateSlide() {
-    document.getElementById("slider-image").src =
-        galleries[currentCategory].images[currentIndex];
+    const images = galleries[currentCategory].images;
+    const sliderImage = document.getElementById("slider-image");
+    sliderImage.src = images[currentIndex];
+
+    // Update dots
+    const dotsContainer = document.getElementById("slider-dots");
+    dotsContainer.innerHTML = "";
+    images.forEach((img, i) => {
+        const dot = document.createElement("span");
+        dot.classList.add("slide-dot");
+        if (i === currentIndex) dot.classList.add("active");
+        dot.addEventListener("click", () => {
+            currentIndex = i;
+            updateSlide();
+        });
+        dotsContainer.appendChild(dot);
+    });
 }
 
 function changeSlide(direction) {
     const images = galleries[currentCategory].images;
     currentIndex += direction;
-
     if (currentIndex < 0) currentIndex = images.length - 1;
     if (currentIndex >= images.length) currentIndex = 0;
-
     updateSlide();
 }
 
@@ -580,6 +594,12 @@ function outsideClick(e) {
         closeLightbox();
     }
 }
+
+// ===== MOBILE SWIPE SUPPORT =====
+let startX = 0;
+let endX = 0;
+
+
 </script>
 
 <div id="lightbox" class="lightbox" onclick="outsideClick(event)">
@@ -592,8 +612,29 @@ function outsideClick(e) {
       <img id="slider-image" src="" alt="Preview">
       <button class="nav next" onclick="changeSlide(1)">❯</button>
     </div>
+
+    <div id="slider-dots" style="text-align:center; margin-top:10px;"></div>
   </div>
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const sliderImg = document.getElementById("slider-image");
+
+    sliderImg.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    sliderImg.addEventListener("touchend", (e) => {
+        endX = e.changedTouches[0].clientX;
+        const diff = endX - startX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) changeSlide(-1);
+            else changeSlide(1);
+        }
+    });
+});
+</script>
 
 
 
