@@ -460,7 +460,7 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
   }
 }
   
-/* MOBILE NAVIGATION */
+/* MOBILE NAVIGATION - slide from right */
 @media (max-width: 768px) {
   header {
     flex-direction: row;
@@ -472,23 +472,21 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
   }
 
   nav {
-    display: flex;
-    flex-direction: column;
-    position: fixed;         /* fixed to viewport */
+    position: fixed;          /* float above everything */
     top: 0;
-    left: 0;                 /* start from left */
-    height: 100vh;           /* full height */
-    width: 250px;            /* menu width */
+    right: -100%;             /* hidden off-screen initially */
+    height: 100%;
+    width: 250px;             /* menu width */
+    flex-direction: column;
     background: var(--bg);
     padding: 2rem 1.5rem;
-    box-shadow: 4px 0 20px rgba(0,0,0,0.1);
-    transform: translateX(-100%); /* hide offscreen */
-    transition: transform 0.3s ease;
+    box-shadow: -4px 0 12px rgba(0,0,0,0.15);
+    transition: right 0.3s ease;
     z-index: 100;
   }
 
   nav.show {
-    transform: translateX(0); /* slide in */
+    right: 0;                 /* slide in from right */
   }
 
   nav a {
@@ -502,6 +500,7 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
     font-size: 1.4rem;
   }
 }
+
 
   /* DESKTOP NAVIGATION */
 @media (min-width: 769px) {
@@ -522,6 +521,37 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
 
   nav a {
     margin-left: 2rem;
+  }
+}
+  
+/* DESKTOP VIEW */
+@media (min-width: 769px) {
+  /* Hide hamburger on desktop */
+  header .toggle:first-of-type {
+    display: none;
+  }
+
+  /* Make sure dark mode toggle is visible and aligned right */
+  header .toggle:last-of-type {
+    display: inline-block;
+    order: 2; /* keeps it on the right */
+  }
+
+  /* Nav stays horizontal and normal size */
+  header nav {
+    display: flex !important;
+    flex-direction: row;
+    position: static;
+    width: auto;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  header nav a.cta {
+    width: auto;          /* Don't stretch */
+    text-align: center;
   }
 }
 
@@ -916,12 +946,34 @@ document.addEventListener("DOMContentLoaded", function () {
 function toggleMenu() {
   const nav = document.querySelector('header nav');
   nav.classList.toggle('show');
+
+  // If nav is open, add click listener on document
+  if (nav.classList.contains('show')) {
+    setTimeout(() => { // slight delay to prevent immediate trigger
+      document.addEventListener('click', closeNavOnClickOutside);
+    }, 10);
+  } else {
+    document.removeEventListener('click', closeNavOnClickOutside);
+  }
+}
+
+function closeNavOnClickOutside(e) {
+  const nav = document.querySelector('header nav');
+  const toggle = document.querySelector('header .toggle:first-of-type');
+
+  // if click is outside nav and outside hamburger, close menu
+  if (!nav.contains(e.target) && !toggle.contains(e.target)) {
+    nav.classList.remove('show');
+    document.removeEventListener('click', closeNavOnClickOutside);
+  }
 }
 </script>
 
 
+
 </body>
 </html>
+
 
 
 
