@@ -114,67 +114,74 @@ nav a:hover { transform: scale(1.05); }
   line-height: 1.2;
   letter-spacing: -0.02em;
 }
+
+/* switch grid to flex for natural photo flow */
 .hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr auto;  /* text + image */
-  gap: 4rem;
+  display: flex;
   align-items: center;
-  background: transparent;   /* make grid background transparent */
-}
-
-.hero-text, .hero-image {
-  background: transparent;   /* remove any container box */
-}
-
-.badge { display: inline-block; padding: .5rem 1.2rem; border: 1px solid var(--border); border-radius: 999px; margin-bottom: 1rem; font-size: 1rem; }
-.hero img { width: 100%; border-radius: 24px; box-shadow: 0 30px 60px rgba(0,0,0,.08); }
-.hero-image {
+  gap: 4rem;
   background: transparent;   /* remove any background */
-  padding: 0;                /* remove internal spacing */
-  margin: 0;                 /* optional, aligns image flush */
-  box-shadow: none;          /* remove any container shadow */
-  display: block;
 }
 
+/* text container */
 .hero-text {
   max-width: 560px;
+  background: transparent;
 }
+
+/* remove box around image container */
+.hero-image {
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* badge styling remains */
+.badge {
+  display: inline-block;
+  padding: .5rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* highlight text */
 .hero .highlight {
   color: var(--accent);
   display: inline-block;
 }
+
+/* hero description */
 .hero-description {
   font-family: 'Inter', system-ui, sans-serif;
-  font-size: 1.125rem;     /* 18px */
+  font-size: 1.125rem;
   line-height: 1.7;
   color: #5a5a5a;
   margin: 1.2rem 0 2rem;
   max-width: 480px;
 }
 
-
+/* outline button */
 .outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   height: 60px;
   padding: 16px 32px;
-
   font-family: 'Inter', system-ui, sans-serif;
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.5;
-
   background: transparent;
   color: #1a1a1a;
-
   border: 2px solid #1a1a1a;
   border-radius: 30px;
-
   text-decoration: none;
   cursor: pointer;
-
   transition: all 0.35s ease;
 }
 
@@ -184,16 +191,21 @@ nav a:hover { transform: scale(1.05); }
   transform: translateY(-1px);
 }
 
+/* profile photo */
 .profile-photo {
-  width: 100%;
+  width: auto;                  /* natural width */
   max-width: 420px;
-  border-radius: 0; 
-  box-shadow: none;          /* remove all shadows */
+  border-radius: 0;             /* keep rectangular */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08); /* subtle depth */
   display: block;
-  filter: none;              /* no brightness/blur/contrast */
-  transition: none;          /* remove hover transform */
+  filter: none;                 /* no blur, brightness, contrast changes */
+  transition: transform 0.3s ease;
 }
 
+/* optional hover for floating effect */
+.profile-photo:hover {
+  transform: translateY(-5px);
+}
 
 
 
@@ -439,7 +451,7 @@ footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border)
 
 <!-- HERO -->
 <section class="hero" data-aos="fade-up">
-  <div class="container hero-grid">
+  <div class="container hero-flex">
 
     <div class="hero-text">
       <span class="badge">✨Your Creative Right Hand</span>
@@ -798,6 +810,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
