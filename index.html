@@ -637,11 +637,13 @@ nav a.cta {
 
 .slide-image {
   width: 100%;
-  max-height: 400px;
-  object-fit: cover;
+  max-height: 400px; /* optional: keeps it from being too tall */
+  object-fit: contain; /* change from cover → contain */
   border-radius: 12px;
   margin-bottom: 1rem;
+  background: #faf8f4; /* optional: show a background if the image doesn't fill all space */
 }
+
 
 .slide-info h3 {
   margin-top: 0.5rem;
@@ -1185,6 +1187,7 @@ startAutoPlay();
 
 </body>
 </html>
+
 
 
 
