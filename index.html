@@ -120,24 +120,26 @@ nav a:hover { transform: scale(1.05); }
   display: flex;
   align-items: center;
   gap: 4rem;
-  background: transparent;   /* remove any background */
+  background: transparent;
+  flex-wrap: nowrap;      /* prevent photo from dropping below */
 }
+
 
 /* text container */
 .hero-text {
-  max-width: 560px;
-  background: transparent;
+  max-width: 560px;       /* keeps text constrained */
+  flex: 1;                /* allows text to take available space */
 }
 
-/* remove box around image container */
 .hero-image {
-  background: transparent;
-  padding: 0;
-  margin: 0;
+  flex-shrink: 0;         /* prevents image from shrinking too much */
+  width: auto;             /* natural image width */
+  max-width: 420px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 
 /* badge styling remains */
 .badge {
@@ -810,6 +812,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 </body>
 </html>
+
 
 
 
