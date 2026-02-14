@@ -511,39 +511,37 @@ nav a.cta {
 
 /* MOBILE NAVIGATION */
 @media (max-width: 768px) {
-
-  /* Hamburger always top right */
-  .hamburger {
+  /* Hamburger stays top-right */
+  header .toggle:first-of-type {
     display: inline-block;
     font-size: 1.5rem;
     cursor: pointer;
-    margin-left: auto; /* push it to far right */
+    margin-left: auto; /* push to right */
     z-index: 101;
   }
 
-  /* Make nav-container slide in below header */
+  /* Slide-in nav container */
   .nav-container {
     position: fixed;
-    top: 60px; /* just below the header */
-    right: 0;
-    height: auto; /* auto height for links */
-    width: 100%; /* full width */
+    top: 0;
+    right: -250px; /* hidden off-screen */
+    height: 100%;
+    width: 250px;
     flex-direction: column;
     background: var(--bg);
-    padding: 1rem 1.5rem;
+    padding: 4rem 1.5rem 2rem 1.5rem; /* add top padding so links start below hamburger */
+    box-shadow: -4px 0 12px rgba(0,0,0,0.15);
     gap: 1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    transform: translateY(-100%); /* hide by default above viewport */
-    opacity: 0;
+    transition: right 0.3s ease;
     z-index: 100;
   }
 
+  /* Show menu */
   .nav-container.show {
-    transform: translateY(0);
-    opacity: 1;
+    right: 0; /* slide in from right */
   }
 
+  /* Stack links vertically */
   nav {
     display: flex;
     flex-direction: column;
@@ -555,12 +553,13 @@ nav a.cta {
     font-size: 1rem;
   }
 
-  /* Dark mode at bottom */
-  .nav-container .darkmode {
-    margin-top: 1rem;
+  /* Dark mode toggle at bottom */
+  .nav-container .toggle:last-of-type {
+    margin-top: auto;
     align-self: flex-start;
   }
 }
+
 
 
 /* DESKTOP NAVIGATION */
@@ -1007,6 +1006,7 @@ function closeNavOnClickOutside(e) {
 
 </body>
 </html>
+
 
 
 
