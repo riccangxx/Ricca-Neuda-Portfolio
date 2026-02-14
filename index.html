@@ -604,12 +604,12 @@ nav a.cta {
 }
 
 
-/* Carousel container */
+/* Desktop Carousel container */
 .carousel {
   position: relative;
   overflow: hidden;
-  width: 800px;        /* desktop fixed width */
-  height: auto;        /* allow text below image */
+  width: 800px;
+  height: auto; /* let text show below */
   margin: 2rem auto;
   border-radius: 16px;
   background: var(--surface);
@@ -633,11 +633,12 @@ nav a.cta {
 /* Slide image */
 .slide-image {
   width: 100%;
-  height: 630px;       /* fixed desktop height */
-  object-fit: contain;  /* show full image without cropping */
+  height: 630px;
+  object-fit: contain;
   border-radius: 12px;
   background: var(--bg);
-  margin-bottom: 1rem; /* space to text */
+  margin-bottom: 1rem;
+  cursor: pointer; /* for clickable sides on mobile */
 }
 
 /* Slide info */
@@ -647,37 +648,11 @@ nav a.cta {
   text-align: center;
 }
 
-/* Navigation & dots container */
-.carousel-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-/* Navigation buttons */
-.carousel-nav button {
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.carousel-nav button:hover {
-  transform: scale(1.05);
-}
-
-/* Dots indicators */
+/* Dots */
 .carousel-dots {
   text-align: center;
+  margin-top: 0.5rem;
 }
-
 .carousel-dots .dot {
   display: inline-block;
   width: 12px;
@@ -688,32 +663,52 @@ nav a.cta {
   cursor: pointer;
   transition: background 0.25s ease, transform 0.2s ease;
 }
-
 .carousel-dots .dot.active {
   background: var(--accent);
   transform: scale(1.2);
 }
 
+/* Arrows (desktop only) */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.carousel-nav button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.carousel-nav button:hover {
+  transform: scale(1.1);
+}
+
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .carousel {
-    width: 100%;      /* scale to screen */
+    width: 100%;
     padding: 0.5rem;
   }
 
   .slide-image {
-    height: auto;     /* maintain aspect ratio */
+    height: auto;
     max-height: 400px;
   }
 
-  /* hide arrows on mobile */
+  /* Hide arrows */
   .carousel-nav {
     display: none;
-  }
-
-  /* dots remain clickable */
-  .carousel-dots {
-    margin-top: 0.5rem;
   }
 }
 
@@ -1133,11 +1128,9 @@ function closeNavOnClickOutside(e) {
 </script>
 
 <script>
-  const slides = document.querySelectorAll(".slide");
+ const slides = document.querySelectorAll(".slide");
 const dots = document.querySelectorAll(".dot");
 let currentSlide = 0;
-let slideInterval = 7000; // 10 seconds per slide
-let autoPlayTimer;
 
 function showSlide(index) {
   slides.forEach(slide => slide.classList.remove("active"));
@@ -1146,23 +1139,17 @@ function showSlide(index) {
   slides[index].classList.add("active");
   dots[index].classList.add("active");
   currentSlide = index;
-
-  // Reset the auto-play timer every time a slide changes
-  resetAutoPlay();
 }
 
-// Next & Prev buttons
-document.querySelector(".next").addEventListener("click", () => {
-  let nextSlide = (currentSlide + 1) % slides.length;
-  showSlide(nextSlide);
+// Desktop arrows
+document.querySelector(".next")?.addEventListener("click", () => {
+  showSlide((currentSlide + 1) % slides.length);
+});
+document.querySelector(".prev")?.addEventListener("click", () => {
+  showSlide((currentSlide - 1 + slides.length) % slides.length);
 });
 
-document.querySelector(".prev").addEventListener("click", () => {
-  let prevSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(prevSlide);
-});
-
-// Click dots to jump to a slide
+// Dots
 dots.forEach(dot => {
   dot.addEventListener("click", () => {
     const index = parseInt(dot.dataset.slide);
@@ -1170,28 +1157,32 @@ dots.forEach(dot => {
   });
 });
 
-// Auto-play function
-function startAutoPlay() {
-  autoPlayTimer = setInterval(() => {
-    let nextSlide = (currentSlide + 1) % slides.length;
-    showSlide(nextSlide);
-  }, slideInterval);
-}
+// Auto-play
+setInterval(() => {
+  showSlide((currentSlide + 1) % slides.length);
+}, 7000); // slower interval
 
-// Reset auto-play
-function resetAutoPlay() {
-  clearInterval(autoPlayTimer);
-  startAutoPlay();
-}
+// Mobile swipe / click sides
+slides.forEach(slide => {
+  slide.addEventListener("click", e => {
+    const x = e.offsetX;
+    const width = slide.clientWidth;
 
-// Start auto-play initially
-startAutoPlay();
+    if (x < width / 2) { // left half
+      showSlide((currentSlide - 1 + slides.length) % slides.length);
+    } else { // right half
+      showSlide((currentSlide + 1) % slides.length);
+    }
+  });
+});
+
 
 </script>
 
 
 </body>
 </html>
+
 
 
 
