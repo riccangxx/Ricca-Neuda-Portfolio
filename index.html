@@ -368,11 +368,285 @@ nav a:hover { transform: scale(1.05); }
 .tools-category span.tool-pill { margin-bottom: .3rem; display: inline-block; }
 
 /* FOOTER */
-footer { background: #0f0f0f; color: #fff; padding: 4rem 6vw; font-size: 0.85rem; display: flex; justify-content: space-between; flex-wrap: wrap; }
-footer div { flex: 1; min-width: 180px; margin-bottom: 1rem; }
-footer a { color: #fff; text-decoration: none; display:block; margin:.3rem 0; transition: transform .2s; }
-footer a:hover { transform: translateY(-3px) scale(1.05); }
-footer .bottom { width:100%; margin-top:2rem; border-top:1px solid var(--border); padding-top:1rem; color:#bbb; text-align:center; }
+/* =========================================
+   FOOTER
+========================================= */
+
+.site-footer {
+  background: #0f0f0f;
+  color: #ffffff;
+  padding: 5rem 6vw 2rem;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns:
+    1.15fr
+    1fr
+    1.35fr
+    1.25fr;
+
+  gap: 4rem;
+}
+
+
+/* FOOTER COLUMNS */
+
+.footer-column {
+  min-width: 0;
+}
+
+.footer-column h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  margin: 0 0 0.7rem;
+  color: #ffffff;
+}
+
+.footer-column h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.7rem;
+  color: #ffffff;
+}
+
+
+/* GOLD ACCENT LINE */
+
+.footer-accent {
+  display: block;
+  width: 38px;
+  height: 2px;
+  background: #a8937c;
+  margin-bottom: 1.6rem;
+}
+
+
+/* BRAND DESCRIPTION */
+
+.footer-brand p {
+  color: #d1d1d1;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin: 0;
+}
+
+
+/* SOCIAL ICONS */
+
+.footer-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.footer-socials a {
+  width: 52px;
+  height: 52px;
+
+  border: 1px solid #eeeeee;
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-socials a:hover {
+  background: #a8937c;
+  border-color: #a8937c;
+  color: #111111;
+  transform: translateY(-3px);
+}
+
+.footer-socials svg {
+  width: 23px;
+  height: 23px;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+
+/* QUICK LINKS */
+
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.footer-links a {
+  color: #eeeeee;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: #a8937c;
+  transform: translateX(4px);
+}
+
+
+/* CONNECT */
+
+.footer-contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+
+  color: #eeeeee;
+
+  margin-bottom: 1.2rem;
+
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-contact-item svg {
+  width: 27px;
+  height: 27px;
+
+  flex-shrink: 0;
+
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  margin-top: 1px;
+}
+
+.footer-contact-item a {
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.footer-contact-item a:hover {
+  color: #a8937c;
+}
+
+
+/* CTA COLUMN */
+
+.footer-cta p {
+  color: #d1d1d1;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  margin: 0 0 2rem;
+}
+
+
+/* CTA BUTTON */
+
+.footer-cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 260px;
+  padding: 1rem 2rem;
+
+  border: 2px solid #a8937c;
+  border-radius: 10px;
+
+  color: #a8937c;
+  text-decoration: none;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.footer-cta-button:hover {
+  background: #a8937c;
+  color: #111111;
+  transform: translateY(-2px);
+}
+
+
+/* COPYRIGHT */
+
+.footer-bottom {
+  max-width: 1400px;
+  margin: 5rem auto 0;
+
+  border-top: 1px solid #777777;
+
+  padding-top: 2rem;
+
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: #bdbdbd;
+  font-size: 0.9rem;
+}
+
+
+/* =========================================
+   FOOTER RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .site-footer {
+    padding: 4rem 1.5rem 2rem;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .footer-column h3 {
+    font-size: 1.8rem;
+  }
+
+  .footer-cta-button {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    margin-top: 3rem;
+  }
+
+}
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -1178,28 +1452,165 @@ nav a.cta {
 </section>
 
 <!-- FOOTER -->
-<footer>
-<div>
-<strong>Ricca Neuda</strong><br>Your creative right hand for business growth
+<footer class="site-footer">
+
+  <div class="footer-container">
+
+    <!-- COLUMN 1: BRAND -->
+    <div class="footer-column footer-brand">
+
+      <h3>Ricca Neuda</h3>
+      <span class="footer-accent"></span>
+
+      <p>
+        Your reliable real estate support partner,<br>
+        helping professionals stay organized<br>
+        and grow their business.
+      </p>
+
+      <div class="footer-socials">
+
+  <!-- Email -->
+  <a href="mailto:riccaneuda38@gmail.com" aria-label="Email">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+      <polyline points="3,7 12,13 21,7"></polyline>
+    </svg>
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/in/ricca-neuda-217904287/" 
+     aria-label="LinkedIn" 
+     target="_blank" 
+     rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 9v9"></path>
+      <path d="M6 6.5v.01"></path>
+      <path d="M10 18v-5a3 3 0 0 1 6 0v5"></path>
+      <path d="M10 12v6"></path>
+    </svg>
+  </a>
+
+  <!-- OnlineJobs.ph -->
+  <a href="https://www.onlinejobs.ph/jobseekers/info/2152693" 
+     aria-label="OnlineJobs.ph" 
+     target="_blank" 
+     rel="noopener noreferrer">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle>
+      <text x="12" y="15" text-anchor="middle"
+            font-size="8"
+            font-family="Arial, sans-serif"
+            font-weight="bold"
+            fill="currentColor"
+            stroke="none">OJ</text>
+    </svg>
+  </a>
+
 </div>
-<div>
-<strong>Quick Links</strong>
-<a href="#about">About</a>
-<a href="#work">Portfolio</a>
-<a href="#services">Services</a>
-<a href="#tools">Tools & Skills</a>
-<a href="#process">Process</a>
-<a href="#contact">Contact</a>
-</div>
-<div>
-<strong>Connect</strong>
-<a href="mailto:riccaneuda38@gmail.com">Email</a>
-<p>Based in: Available for remote work</p>
-<p>Availability: Accepting new clients</p>
-</div>
-<div class="bottom">
-<p>© 2026 Ricca Neuda. All rights reserved.</p>
-</div>
+
+    </div>
+
+
+    <!-- COLUMN 2: QUICK LINKS -->
+    <div class="footer-column">
+
+      <h4>QUICK LINKS</h4>
+      <span class="footer-accent"></span>
+
+      <nav class="footer-links">
+        <a href="#about">About</a>
+        <a href="#work">Portfolio</a>
+        <a href="#services">Services</a>
+        <a href="#tools">Tools & Skills</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+    </div>
+
+
+    <!-- COLUMN 3: CONNECT -->
+    <div class="footer-column">
+
+      <h4>CONNECT</h4>
+      <span class="footer-accent"></span>
+
+      <div class="footer-contact-item">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+          <polyline points="3,7 12,13 21,7"></polyline>
+        </svg>
+
+        <a href="mailto:riccaneuda38@gmail.com">Email</a>
+
+      </div>
+
+
+      <div class="footer-contact-item">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"></path>
+          <circle cx="12" cy="10" r="2.5"></circle>
+        </svg>
+
+        <span>Based in: Available for remote work</span>
+
+      </div>
+
+
+      <div class="footer-contact-item">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2"></rect>
+          <line x1="7" y1="3" x2="7" y2="7"></line>
+          <line x1="17" y1="3" x2="17" y2="7"></line>
+          <line x1="3" y1="9" x2="21" y2="9"></line>
+          <line x1="8" y1="13" x2="8" y2="13"></line>
+          <line x1="12" y1="13" x2="12" y2="13"></line>
+          <line x1="16" y1="13" x2="16" y2="13"></line>
+          <line x1="8" y1="17" x2="8" y2="17"></line>
+          <line x1="12" y1="17" x2="12" y2="17"></line>
+        </svg>
+
+        <span>Availability: Accepting new clients</span>
+
+      </div>
+
+    </div>
+
+
+    <!-- COLUMN 4: CTA -->
+    <div class="footer-column footer-cta">
+
+      <h4>LET’S WORK TOGETHER</h4>
+      <span class="footer-accent"></span>
+
+      <p>
+        Need an extra set of hands? Let’s talk<br>
+        about how I can support your real estate<br>
+        business and take some of the workload<br>
+        off your plate.
+      </p>
+
+      <a href="https://calendly.com/ricca-neuda-va/real-estate-support"
+   class="footer-cta-button"
+   target="_blank"
+   rel="noopener noreferrer">
+  BOOK A CALL
+</a>
+
+    </div>
+
+  </div>
+
+
+  <!-- COPYRIGHT -->
+  <div class="footer-bottom">
+    <p>© 2026 Ricca Neuda. All rights reserved.</p>
+  </div>
+
 </footer>
 
 <div id="contact-modal" class="modal">
