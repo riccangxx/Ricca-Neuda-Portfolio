@@ -321,10 +321,28 @@ nav a:hover { transform: scale(1.05); }
 .process-step:hover { transform: translateY(-5px) scale(1.02); }
 .process-step span.number { font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 1rem; }
 
+
 /* CONTACT BOX */
-.contact-center { text-align: center; margin-top: 2rem; }
-.contact-center a { padding: .7rem 1.4rem; background: var(--button); color: var(--bg); border-radius: 999px; text-decoration: none; display: inline-block; margin-top: 1rem; transition: transform .2s; }
-.contact-center a:hover { transform: scale(1.05); }
+.contact-center {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.contact-center a.cta {
+  height: auto;
+  padding: .9rem 1.8rem;
+  background: var(--button);
+  color: var(--bg);
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 1rem;
+  transition: transform .2s ease, background .2s ease;
+}
+
+.contact-center a.cta:hover {
+  transform: translateY(-2px);
+}
 
 /* PORTFOLIO + TOOLS PILLS */
 .tool-pill {
@@ -566,7 +584,7 @@ nav a:hover { transform: scale(1.05); }
   padding: 1rem 2rem;
 
   border: 2px solid #a8937c;
-  border-radius: 10px;
+  border-radius: 6px;
 
   color: #a8937c;
   text-decoration: none;
@@ -1064,7 +1082,12 @@ nav a.cta {
       <a href="#services">Services</a>
       <a href="#tools">Tools & Skills</a>
       <a href="#process">Process</a>
-      <a href="#contact" class="cta">Let's Talk</a>
+      <a href="https://calendly.com/ricca-neuda-va/real-estate-support"
+   class="cta"
+   target="_blank"
+   rel="noopener noreferrer">
+  Let's Talk
+</a>
     </nav>
 
     <span class="toggle darkmode" onclick="toggleTheme()">🌙</span>
@@ -1092,7 +1115,11 @@ nav a.cta {
   Real Estate Virtual Assistant | Transaction Coordinator | Marketing & Operations Support
 </p>
       <div class="buttons">
-        <a href="#contact" class="cta">Let's Work Together</a>
+        <a href="#"
+   class="cta"
+   onclick="event.preventDefault(); openModal();">
+  Let's Work Together
+</a>
         <a href="#work" class="outline">View My Work</a>
       </div>
     </div>
@@ -1445,8 +1472,11 @@ nav a.cta {
 
       <p>I typically respond within 24 hours.</p>
 
-      <a href="#" onclick="openModal()" class="cta">Let's Connect</a>
-
+      <a href="#"
+   onclick="event.preventDefault(); openModal();"
+   class="cta">
+  Let's Connect
+</a>
     </div>
   </div>
 </section>
